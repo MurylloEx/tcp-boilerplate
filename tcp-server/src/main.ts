@@ -1,5 +1,5 @@
 import { createServer } from "tcp-controller";
-import { MainController } from './controllers/tcp.service';
+import { MainController } from './controllers/tcp.controller';
 
 async function bootstrap(){
   createServer(MainController);
