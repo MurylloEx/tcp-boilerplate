@@ -1,0 +1,22 @@
+{
+  "name": "tcp-client",
+  "version": "1.0.0",
+  "description": "This is a simple TCP/IP client and server boilerplate to be used in some IoT and streaming projects in a near future.",
+  "main": "dist/main.js",
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc",
+    "start": "ts-node src/main.ts"
+  },
+  "keywords": ["tcp", "ip", "osi", "tcp/ip"],
+  "author": "Muryllo Pimenta de Oliveira",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.20.41",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "tcp-controller": "^1.0.1"
+  }
+}
