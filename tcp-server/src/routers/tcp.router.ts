@@ -2,13 +2,13 @@ import {
   TcpBuffer, 
   TcpCriteriaId, 
   TcpGateway 
-} from "tcp-controller";
+} from 'tcp-controller';
 
 export class MainGateway extends TcpGateway {
 
-  @TcpCriteriaId("message")
+  @TcpCriteriaId('message')
   isMessage(@TcpBuffer() buffer: Buffer) {
-    return buffer.toString().includes("Client to server!");
+    return buffer.toString().includes('Client to server!');
   }
 
 }

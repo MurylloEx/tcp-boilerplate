@@ -1,6 +1,6 @@
-import { Socket } from "net";
-import { MainGateway } from "../routers/tcp.router";
+import { MainGateway } from 'src/routers';
 import {
+  NativeSocket,
   TcpBuffer,
   TcpClientConnected,
   TcpClientDisconnected,
@@ -11,38 +11,38 @@ import {
   TcpMessage,
   TcpMessageStream,
   TcpSocket
-} from "tcp-controller";
+} from 'tcp-controller';
 
-@TcpController("0.0.0.0", 1337)
+@TcpController('localhost', 1337)
 @TcpMessageStream()
 export class MainController extends MainGateway {
 
   @TcpClientConnected()
-  onConnect(@TcpSocket() sock: Socket) {
-    console.log("[Server] Connected client from " + sock.remoteAddress);
-    this.send(sock, Buffer.from("Server to client!"));
-    this.send(sock, Buffer.from("5erver to client!"));
+  onConnect(@TcpSocket() sock: NativeSocket) {
+    console.log('[Server] Connected client from ' + sock.remoteAddress);
+    this.send(sock, Buffer.from('Server to client!'));
+    this.send(sock, Buffer.from('5erver to client!'));
   }
 
   @TcpClientDisconnected()
   onDisconnect(hadError: boolean) {
-    console.log("[Server] Disconnected client with error? " + hadError);
+    console.log('[Server] Disconnected client with error? ' + hadError);
   }
 
   @TcpError()
   onError(error: Error) {
-    console.log("[Server] Error happened: " + error.message);
+    console.log('[Server] Error happened: ' + error.message);
   }
 
   @TcpListening()
   onListening() {
-    console.log("[Server] Server up.");
+    console.log('[Server] Server up.');
   }
 
-  @TcpCriteria("message")
+  @TcpCriteria('message')
   @TcpMessage()
-  onMessage(@TcpBuffer() buffer: Buffer, @TcpSocket() sock: Socket) {
-    console.log("[Server] Message received from " + sock.remoteAddress + ".\nMessage: " + buffer.toString());
+  onMessage(@TcpBuffer() buffer: Buffer, @TcpSocket() sock: NativeSocket) {
+    console.log('[Server] Message received from ' + sock.remoteAddress + '.\nMessage: ' + buffer.toString());
   }
 
 }
